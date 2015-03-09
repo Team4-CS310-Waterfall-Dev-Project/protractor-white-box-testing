@@ -2,9 +2,13 @@ describe('web application - search', function() {
     var inputTextField = element(by.id('topic_title'));
     var submitButton = element(by.css('.btn'));
     var autocompletejQueryBox = element(by.id('autocompletejQueryBox'));
+    var autocompleteScrollbar = element(by.css('.scrollBar'));
+    var albumImages = element(by.css('.albumArt'));
 
+    var test1ExpectedValue = '';
     var test2Value = "Bob Dylan";
     var test3Value = "Bob";
+    const SUGG = 5;
 
 
     //run grunt serve in the Downloads folder before running tests
@@ -14,7 +18,7 @@ describe('web application - search', function() {
 
 
     it('should begin with an empty space for the word cloud to generate and an input text field for the user to search for an artist.', function(){
-	   expect(inputTextField.getText()).toEqual('');
+	   expect(inputTextField.getText()).toEqual(test1ExpectedValue);
     });
 
 
@@ -40,19 +44,22 @@ describe('web application - search', function() {
 
 
     it('should be able to see at most 5 suggestions at a time in the Autocomplete field.', function(){
+        //test for children (suggestions) of autocomplete object
         autocompletejQueryBox.all(by.css('children')).then(function(items){
-            expect(items.length).toBe(5);
+            expect(items.length).toBe(SUGG);
         });
     }); 
 
 
-    // it('should also have a scroll bar that will allow the user to view other matches if there are more than 5 suggestions.', function(){
+    it('should also have a scroll bar that will allow the user to view other matches if there are more than 5 suggestions.', function(){
+        //test if autocomplete scroll bar exists
+        expect(browser.isElementPresent(autocompleteScrollbar)).toEqual(true);
+    }); 
 
-    // }); 
 
-
-    // it('should have pictures for each artist to help the use recognize the artist they are looking for.', function() {
-    
-    // });
+    it('should have pictures for each artist to help the user recognize the artist they are looking for.', function() {
+        //test for image existence
+        expect(browser.isElementPresent(albumImages)).toEqual(true);
+    });
 
 });
