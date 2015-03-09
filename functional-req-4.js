@@ -1,48 +1,39 @@
 describe('lyrics', function() {
-    var inputTextField = element(by.id('topic_title'));
-    var submitButton = element(by.css('.btn'));
+    var songs = element(by.id('song-list')).all(by.repeater('song in songs'));
+    var songTitle = element(by.css('h2'));
+    var songLyrics = element(by.css('p'));
 
-    var test2Value = "Bob Dylan";
+    const songLyricsURL = 'http://localhost:9000/#/song-lyrics';
+    const songListURL = 'http://localhost:9000/#/song-list';
+    //again, it would be ideal to have a function to randomly test
+    //elements in the large array, but we'll hand select the sample
+    it('should be able to select any song and be directed to the lyrics page', function(){
+        browser.get(songListURL);
+        //test only if a sample are clickable
+        //since it is not feasible to test all
+        songs.get(0).click();
+        expect(browser.getCurrentUrl()).toBe(songLyricsURL);
 
+        //go back and do it again
+        browser.navigate().back();
+        songs.get(2).click();
+        expect(browser.getCurrentUrl()).toBe(songLyricsURL);        
 
+        //and again
+        browser.navigate().back();
+        songs.last().click();
+        expect(browser.getCurrentUrl()).toBe(songLyricsURL);
+    });
 
-    //run grunt serve in the Downloads folder before running tests
-    beforeEach(function(){
-	   browser.get('http://localhost:9000/#/song-lyrics');
-    });  
-
-
-    // it('should begin with an empty space for the word cloud to generate and an input text field for the user to search for an artist.', function(){
-	   // expect(inputTextField.getText()).toEqual('');
-    // });
-
-
-    // it('should be able to search for a music artist according to the artist\'s name entered in the text field.', function(){
-    //     //enter artist name into text box
-    //     inputTextField.sendKeys(test2Value);
-
-    //     //click submit
-    //     submitButton.click();
-    // }); 
-
-
-    // it('should provide an autocomplete field after a brief pause in the user\'s input.', function(){
-
-    // });
+    it('should contain the title of the song, aligned left', function(){
+        browser.get(songLyricsURL);
 
 
-    // it('should be able to see at most 5 suggestions at a time in the Autocomplete field.', function(){
-
-    // }); 
-
-
-    // it('should also have a scroll bar that will allow the user to view other matches if there are more than 5 suggestions.', function(){
-
-    // }); 
+        //wasn't able to find a method to test left justification
+        //instead I'll see if it's location is less than the paragraph element 
+        expect(songTitle.getLocation().x < songLyrics.getLocation.x).toBe(true);
+    });
 
 
-    // it('should have pictures for each artist to help the use recognize the artist they are looking for.', function() {
-    
-    // });
 
 });
