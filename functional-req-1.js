@@ -1,6 +1,11 @@
 describe('web application - search', function() {
     var inputTextField = element(by.id('topic_title'));
+    var submitButton = element(by.css('.btn'));
+    var autocompleteBox = element(by.id('autocompleteBox'));
 
+    var test2Value = "Bob Dylan";
+    var test3Value = "Bob";
+    var test3ExpectedValue = "Bob Dylan";
 
 
     //run grunt serve in the Downloads folder before running tests
@@ -23,9 +28,17 @@ describe('web application - search', function() {
     });  
 
 
-    // it('should provide an autocomplete field after a brief pause in the user\'s input.', function(){
+    it('should provide an autocomplete field after a brief pause in the user\'s input.', function(){
+        //enter artist name into text box
+        inputTextField.sendKeys(test3Value);
 
-    // });
+        //wait for 5 seconds
+        browser.sleep(5000);
+
+        //find autocomplete functionality
+        //test whether there's text autocomplete
+        expect(autocompleteBox.getText()).toEqual(test3ExpectedValue);
+    });
 
 
     // it('should be able to see at most 5 suggestions at a time in the Autocomplete field.', function(){
