@@ -1,20 +1,28 @@
 describe('song list', function() {
-    var inputTextField = element(by.id('topic_title'));
-    var submitButton = element(by.css('.btn'));
+    var wordCloud = element(by.id('wordCloud'));
+    var words = wordCloud.all(by.repeater('word in words'));  
 
-    var test2Value = "Bob Dylan";
+    const wordCloudURL = 'http://localhost:9000/#/word-cloud';
+    const songListURL = 'http://localhost:9000/#/song-list';
+    //again, it would be ideal to have a function to randomly test
+    //elements in the large array, but we'll hand select the sample
+    it('should be able to select any word in the word cloud and the user should be directed to the songs page', function(){
+        browser.get(wordCloudURL);
+        //test only if a sample are clickable
+        //since it is not feasible to test all
+        words.get(0).click();
+        expect(browser.getCurrentUrl()).toBe(songListURL);
 
+        //go back and do it again
+        browser.navigate().back();
+        words.get(2).click();
+        expect(browser.getCurrentUrl()).toBe(songListURL);        
 
-
-    //run grunt serve in the Downloads folder before running tests
-    beforeEach(function(){
-	   browser.get('http://localhost:9000/#/song-list');
-    });  
-
-
-    // it('should begin with an empty space for the word cloud to generate and an input text field for the user to search for an artist.', function(){
-	   // expect(inputTextField.getText()).toEqual('');
-    // });
+        //and again
+        browser.navigate().back();
+        words.last().click();
+        expect(browser.getCurrentUrl()).toBe(songListURL);
+    });
 
 
     // it('should be able to search for a music artist according to the artist\'s name entered in the text field.', function(){
