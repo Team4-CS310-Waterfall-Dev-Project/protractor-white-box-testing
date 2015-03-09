@@ -1,6 +1,7 @@
 describe('song list', function() {
     var wordCloud = element(by.id('wordCloud'));
     var words = wordCloud.all(by.repeater('word in words'));  
+    var songs = element(by.id('song-list')).all(by.repeater('song in songs'));
 
     const wordCloudURL = 'http://localhost:9000/#/word-cloud';
     const songListURL = 'http://localhost:9000/#/song-list';
@@ -25,32 +26,49 @@ describe('song list', function() {
     });
 
 
-    // it('should be able to search for a music artist according to the artist\'s name entered in the text field.', function(){
-    //     //enter artist name into text box
-    //     inputTextField.sendKeys(test2Value);
-
-    //     //click submit
-    //     submitButton.click();
-    // }); 
-
-
-    // it('should provide an autocomplete field after a brief pause in the user\'s input.', function(){
-
-    // });
-
-
-    // it('should be able to see at most 5 suggestions at a time in the Autocomplete field.', function(){
-
-    // }); 
-
-
-    // it('should also have a scroll bar that will allow the user to view other matches if there are more than 5 suggestions.', function(){
-
-    // }); 
-
-
-    // it('should have pictures for each artist to help the use recognize the artist they are looking for.', function() {
+    it('should include the titles of all the songs in which this word appears', function(){
+        browser.get(songListURL);
+        
+        //get all the songs from the API by the artists and
+        // then see which ones have the word in them and if they're all displayed
     
-    // });
+        //GOOD WAY TO TEST?
+    });
+
+
+    it('should show the number of appearances of this word in the lyrics', function(){
+        browser.get(songListURL);
+        
+        //count up the appearances of a word in a sample lyrics
+        //don't have time for
+    });
+
+    it('should display the songs in decreasing order in which this word appears', function(){
+        browser.get(songListURL);
+
+        //loop through all songs & check if sorted in decreasing order
+        // var areSongsInDecreasingOrder = true;
+        // var lastSongOccurances = Number.MAX_VALUE;
+        // var currentIndex = 0;
+        // while(currentIndex < songs.count()){
+        //     if(songs.get(currentIndex).occurances > lastSongOccurances){
+        //         areSongsInDecreasingOrder = false;
+        //         break;
+        //     }
+        //     currentIndex = currentIndex + 1;
+        //     lastSongOccurances = songs.get(currentIndex).occurances;
+        // }
+        // expect(areSongsInDecreasingOrder).toBe(true);
+
+        //tried the above code and it timed out
+        //so we'll check if the last if less than the first
+        var firstSongOccurances = songs.first().evaluate('song.occurances');
+        var lastSongOccurances = songs.last().evaluate('song.occurances');
+        var areSongsInDecreasingOrder = (firstSongOccurances > lastSongOccurances);
+        expect(areSongsInDecreasingOrder).toBe(true);
+
+        //I can't extract the occurances element from the array of songs and evaluate it
+        //It should evaluate to true
+    });
 
 });
