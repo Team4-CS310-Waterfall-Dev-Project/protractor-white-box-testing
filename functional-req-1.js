@@ -1,11 +1,10 @@
 describe('web application - search', function() {
     var inputTextField = element(by.id('topic_title'));
     var submitButton = element(by.css('.btn'));
-    var autocompleteBox = element(by.id('autocompleteBox'));
+    var autocompletejQueryBox = element(by.id('autocompletejQueryBox'));
 
     var test2Value = "Bob Dylan";
     var test3Value = "Bob";
-    var test3ExpectedValue = "Bob Dylan";
 
 
     //run grunt serve in the Downloads folder before running tests
@@ -35,15 +34,16 @@ describe('web application - search', function() {
         //wait for 5 seconds
         browser.sleep(5000);
 
-        //find autocomplete functionality
-        //test whether there's text autocomplete
-        expect(autocompleteBox.getText()).toEqual(test3ExpectedValue);
+        //test if autocomplete exists
+        expect(browser.isElementPresent(autocompletejQueryBox)).toEqual(true);
     });
 
 
-    // it('should be able to see at most 5 suggestions at a time in the Autocomplete field.', function(){
-
-    // }); 
+    it('should be able to see at most 5 suggestions at a time in the Autocomplete field.', function(){
+        autocompletejQueryBox.all(by.css('children')).then(function(items){
+            expect(items.length).toBe(5);
+        });
+    }); 
 
 
     // it('should also have a scroll bar that will allow the user to view other matches if there are more than 5 suggestions.', function(){
