@@ -1,10 +1,12 @@
 describe('word cloud', function() {
     var inputTextField = element(by.id('topic_title'));
     var submitButton = element(by.css('.btn'));
+    var wordCloud = element(by.id('wordCloud'));
+    var words = wordCloud.all(by.css('.child'));
 
-    var test2Value = "Bob Dylan";
-
-
+    var fakeArtistInput = 'Billy Joel';
+    var expectedWordsInWordCloud = 'piano';
+    const WCS = 250;
 
     //run grunt serve in the Downloads folder before running tests
     beforeEach(function(){
@@ -12,37 +14,46 @@ describe('word cloud', function() {
     });  
 
 
-    // it('should begin with an empty space for the word cloud to generate and an input text field for the user to search for an artist.', function(){
-	   // expect(inputTextField.getText()).toEqual('');
-    // });
+    it('should have a submit button for the user', function(){
+	   expect(browser.isElementPresent(submitButton)).toEqual(true);
+    });
 
 
-    // it('should be able to search for a music artist according to the artist\'s name entered in the text field.', function(){
-    //     //enter artist name into text box
-    //     inputTextField.sendKeys(test2Value);
+    it('should generate a new word cloud based on the user\'s input sorted by the frequency of words in the lyrics of the artist entered', function(){
+       //get the old word cloud
+       var oldWords = words;
 
-    //     //click submit
-    //     submitButton.click();
-    // }); 
+       //input an artist's name
+       inputTextField.sendKeys(fakeArtistInput);
 
+       //submit
+       submitButton.click();
 
-    // it('should provide an autocomplete field after a brief pause in the user\'s input.', function(){
-
-    // });
-
-
-    // it('should be able to see at most 5 suggestions at a time in the Autocomplete field.', function(){
-
-    // }); 
+       //check new word cloud is not same as old
+       // ie an array of labels
+       expect(oldWords).toNotEqual(words);
+    });
 
 
-    // it('should also have a scroll bar that will allow the user to view other matches if there are more than 5 suggestions.', function(){
+    it('should have all words in the word cloud be clickable', function(){
+        //test only if a sample are clickable
+        //since it is not feasible to test all
 
-    // }); 
+
+    });
 
 
-    // it('should have pictures for each artist to help the use recognize the artist they are looking for.', function() {
-    
-    // });
+    it('should filter out words such as \'it\', \'the\',\'a\',\'an\' filtered out', function(){
+        // since it wouldn't be feasible to test all words
+        // in the word cloud, we will only test a sample
+
+        //test if they equal a, an, it, the
+
+    });
+
+
+    it('should create a word cloud with no more than ' + WCS + ' words', function(){
+        //test the length of the array of words
+    });
 
 });
