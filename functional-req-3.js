@@ -1,4 +1,4 @@
-describe('word cloud', function() {
+describe('song list', function() {
     var inputTextField = element(by.id('topic_title'));
     var submitButton = element(by.css('.btn'));
 
@@ -8,7 +8,7 @@ describe('word cloud', function() {
 
     //run grunt serve in the Downloads folder before running tests
     beforeEach(function(){
-	   browser.get('http://localhost:9000/#/word-cloud');
+	   browser.get('http://localhost:9000/#/song-list');
     });  
 
 

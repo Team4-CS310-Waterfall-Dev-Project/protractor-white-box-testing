@@ -14,9 +14,13 @@ describe('web application - search', function() {
     });
 
 
-    // it('should be able to search for a music artist according to the artist\'s name entered in the text field.', function(){
+    it('should be able to search for a music artist according to the artist\'s name entered in the text field.', function(){
+        //enter artist name into text box
+        inputTextField.sendKeys(test2Value);
 
-    // }); 
+        //click submit
+        submitButton.click();
+    });  
 
 
     // it('should provide an autocomplete field after a brief pause in the user\'s input.', function(){
