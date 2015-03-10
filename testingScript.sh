@@ -1,13 +1,19 @@
 #!/bin/bash
 
 # start the webapp
-cd ~/Downloads &&
-grunt serve &&
+gnome-terminal --working-directory="$HOME/Downloads" -e --command="grunt serve" &&
+
+#wait for webapp to start up
+sleep 10 &&
 
 # start the testing serve
-gnome-terminal --working-directory="$HOME/" &&
-webdriver-manager start &&
+gnome-terminal --working-directory="$HOME/" -e --command="webdriver-manager start" &&
+
+
+#wait for testing server to start up
+sleep 5 &&
 
 # start the black box testing 
-gnome-terminal --working-directory="$HOME/protractor-testing/protractor-white-box-testing" &&
-protractor conf.js
+gnome-terminal --working-directory="$HOME/protractor-testing/protractor-white-box-testing" -e --command="protractor conf.js"
+
+# TODO start the white box testing
