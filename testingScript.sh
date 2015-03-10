@@ -13,7 +13,8 @@ gnome-terminal --working-directory="$HOME/" -e --command="webdriver-manager star
 #wait for testing server to start up
 sleep 5 &&
 
-# start the black box testing 
+# start the black box testing
+# attempting to write output to a text file
 gnome-terminal --working-directory="$HOME/protractor-testing/protractor-white-box-testing" -e --command="protractor conf.js"
 
 # TODO start the white box testing
