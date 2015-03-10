@@ -53,7 +53,7 @@ describe('lyrics', function() {
         //click the back to word cloud button
         backToWordCloudButton.click();
         //verify url
-        expect(browser.getCurrentUrl()).toBe(songLyricsURL);
+        expect(browser.getCurrentUrl()).toBe(songListURL);
     });
 
 });
