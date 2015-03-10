@@ -15,6 +15,9 @@ sleep 5 &&
 
 # start the black box testing
 # attempting to write output to a text file
-gnome-terminal --working-directory="$HOME/protractor-testing/protractor-white-box-testing" -e --command="protractor conf.js"
+gnome-terminal --working-directory="$HOME/protractor-testing/protractor-white-box-testing" -e --command="protractor conf.js" &&
+
+#wait for black box testing to finish
+sleep 60 
 
 # TODO start the white box testing
