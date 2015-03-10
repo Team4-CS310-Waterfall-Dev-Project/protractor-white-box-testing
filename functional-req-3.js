@@ -31,8 +31,8 @@ describe('song list', function() {
         
         //get all the songs from the API by the artists and
         // then see which ones have the word in them and if they're all displayed
-    
-        //GOOD WAY TO TEST?
+
+        //human oracle rather than an automated process
     });
 
 
