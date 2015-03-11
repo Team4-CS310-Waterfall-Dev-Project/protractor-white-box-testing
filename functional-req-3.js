@@ -35,6 +35,11 @@ describe('song list', function() {
         // then see which ones have the word in them and if they're all displayed
 
         //human oracle rather than an automated process
+        var chosenWord = 'sweet';
+        var artistsEntered = ['50 cent', 'niel diamond','Lynyrd Skynyrd'];
+        var songsWithSweetInThem = [1,2,3,4,5];
+        //testing the length of the songs list rather than the actual content of the list
+        expect(songsWithSweetInThem.length).toEqual(songs.length);
     });
 
 
