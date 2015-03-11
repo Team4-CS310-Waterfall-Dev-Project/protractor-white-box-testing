@@ -5,6 +5,8 @@ describe('song list', function() {
 
     const wordCloudURL = 'http://localhost:9000/#/word-cloud';
     const songListURL = 'http://localhost:9000/#/song-list';
+    
+
     //again, it would be ideal to have a function to randomly test
     //elements in the large array, but we'll hand select the sample
     it('should be able to select any word in the word cloud and the user should be directed to the songs page', function(){
@@ -40,35 +42,30 @@ describe('song list', function() {
         browser.get(songListURL);
         
         //count up the appearances of a word in a sample lyrics
-        //don't have time for
+        //don't have time for -- human oracle
+
+        //for sweet home alabama sweet apears 10 xs
+        var numSweet = 10;
+        expect(songs.first().evaluate('song.occurences')).toBe(numSweet);
     });
 
     it('should display the songs in decreasing order in which this word appears', function(){
         browser.get(songListURL);
 
         //loop through all songs & check if sorted in decreasing order
-        // var areSongsInDecreasingOrder = true;
-        // var lastSongOccurances = Number.MAX_VALUE;
-        // var currentIndex = 0;
-        // while(currentIndex < songs.count()){
-        //     if(songs.get(currentIndex).occurances > lastSongOccurances){
-        //         areSongsInDecreasingOrder = false;
-        //         break;
-        //     }
-        //     currentIndex = currentIndex + 1;
-        //     lastSongOccurances = songs.get(currentIndex).occurances;
-        // }
-        // expect(areSongsInDecreasingOrder).toBe(true);
-
-        //tried the above code and it timed out
-        //so we'll check if the last if less than the first
-        var firstSongOccurances = songs.first().evaluate('song.occurances');
-        var lastSongOccurances = songs.last().evaluate('song.occurances');
-        var areSongsInDecreasingOrder = (firstSongOccurances > lastSongOccurances);
+        var areSongsInDecreasingOrder = true;
+        var lastSongOccurances = Number.MAX_VALUE;
+        var currentIndex = 0;
+        while(currentIndex < songs.count()){
+            if(songs.get(currentIndex).evaluate('song.occurances') > lastSongOccurances){
+                areSongsInDecreasingOrder = false;
+                break;
+            }
+            lastSongOccurances = songs.get(currentIndex).evaluate('song.occurances');
+            currentIndex = currentIndex + 1;
+        }
         expect(areSongsInDecreasingOrder).toBe(true);
 
-        //I can't extract the occurances element from the array of songs and evaluate it
-        //It should evaluate to true
     });
 
 });
