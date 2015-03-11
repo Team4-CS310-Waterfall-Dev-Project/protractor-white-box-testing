@@ -1,55 +1,24 @@
-describe('add to cloud', function() {
-    var inputTextField = element(by.id('topic_title'));
-    var submitButton = element(by.css('.btn'));
+describe('angularjs homepage', function(){
+	it('add words to cloud', function() {
+	browser.get('http://localhost:9000/#/word-cloud');
 
-    var test2Value = "Bob Dylan";
-    var MLST = 1;
+	//find and fill in textbox
+	var items,
+		startCount
 
-    //The system should provide an "add to cloud" functionality whenever a word-cloud is present
+	var inputField = element(by.id('topic_title'));
+	inputField.clear();
+	inputField.sendKeys('Drake');
+	startCount = words.count();
+	var wordCloud = element(by.id('wordCloud'));
+	var words = wordCloud.all(by.repeater('word in words'));
+	var Submit = element(by.css('.btn'));
+	Submit.click();
+	
+	inputField.sendKeys('Beatles');
+	var addToWCButton = element(by.id('addToWC'));
+	addToWCBUtton.click();
 
-    //The user should be able to input the name of another artist
-
-    //The user should be able to select "add to cloud" instead of "submit"
-
-    //The system should be able to provide a new word cloud that combines lyrics from all the artists in both the cloud and the user input
-
-    //run grunt serve in the Downloads folder before running tests
-    beforeEach(function(){
-	   browser.get('http://localhost:9000/#/word-cloud');
-    });  
-
-
-    // it('should begin with an empty space for the word cloud to generate and an input text field for the user to search for an artist.', function(){
-	   // expect(inputTextField.getText()).toEqual('');
-    // });
-
-
-    // it('should be able to search for a music artist according to the artist\'s name entered in the text field.', function(){
-    //     //enter artist name into text box
-    //     inputTextField.sendKeys(test2Value);
-
-    //     //click submit
-    //     submitButton.click();
-    // }); 
-
-
-    // it('should provide an autocomplete field after a brief pause in the user\'s input.', function(){
-
-    // });
-
-
-    // it('should be able to see at most 5 suggestions at a time in the Autocomplete field.', function(){
-
-    // }); 
-
-
-    // it('should also have a scroll bar that will allow the user to view other matches if there are more than 5 suggestions.', function(){
-
-    // }); 
-
-
-    // it('should have pictures for each artist to help the use recognize the artist they are looking for.', function() {
-    
-    // });
-
+	expect(words.count()).toEqual(startCount+1);
+	});
 });

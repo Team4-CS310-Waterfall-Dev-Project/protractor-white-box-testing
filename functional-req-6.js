@@ -1,54 +1,15 @@
-describe('share to Facebook', function() {
-    var inputTextField = element(by.id('topic_title'));
-    var submitButton = element(by.css('.btn'));
-
-    var test2Value = "Bob Dylan";
-    var MLST = 1;
-
-    //The user should be able to provide the user with a share option
-
-    //The user should be able to click on the share option
-
-    //When the share option is clicked, the system should provide a sharing option to Facebook
-
-
-    //run grunt serve in the Downloads folder before running tests
-    beforeEach(function(){
-	   browser.get('http://localhost:9000/#/');
-    });  
-
-
-    // it('should begin with an empty space for the word cloud to generate and an input text field for the user to search for an artist.', function(){
-	   // expect(inputTextField.getText()).toEqual('');
-    // });
-
-
-    // it('should be able to search for a music artist according to the artist\'s name entered in the text field.', function(){
-    //     //enter artist name into text box
-    //     inputTextField.sendKeys(test2Value);
-
-    //     //click submit
-    //     submitButton.click();
-    // }); 
-
-
-    // it('should provide an autocomplete field after a brief pause in the user\'s input.', function(){
-
-    // });
-
-
-    // it('should be able to see at most 5 suggestions at a time in the Autocomplete field.', function(){
-
-    // }); 
-
-
-    // it('should also have a scroll bar that will allow the user to view other matches if there are more than 5 suggestions.', function(){
-
-    // }); 
-
-
-    // it('should have pictures for each artist to help the use recognize the artist they are looking for.', function() {
-    
-    // });
-
+describe('angularjs homepage', function(){
+	it('show facebook share interface', function() {
+	browser.get('http://localhost:9000/#/word-cloud');
+	var el = element(by.id('fb_root'));
+	var clickButton = element(by.css('.btn'));
+	var inputField = element(by.id('topic_title'));
+	inputField.clear();
+	inputField.sendKeys('Drake');
+	clickButton.click();
+	el.click();
+	expect(browser.getCurrentUrl()).toEqual('https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fapp_id%3D660864187373367%26sdk%3Djoey%26u%3Dhttps%253A%252F%252Fdevelopers.facebook.com%252Fdocs%252Fplugins%252F%26display%3Dpopup%26ref%3Dplugin%26src%3Dshare_button%26ret%3Dlogin&display=popup');
+	});
 });
+
+

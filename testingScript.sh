@@ -18,6 +18,7 @@ sleep 5 &&
 gnome-terminal --working-directory="$HOME/protractor-testing/protractor-white-box-testing" -e --command="protractor conf.js" &&
 
 #wait for black box testing to finish
-sleep 60 
+sleep 20 && 
 
 # TODO start the white box testing
+phpunit --coverage-text --bootstrap onlyGenerateWC.php wordCloudJSONTest.php
