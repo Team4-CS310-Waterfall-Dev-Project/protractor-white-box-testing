@@ -4,7 +4,7 @@ describe('word cloud', function() {
     var wordCloud = element(by.id('wordCloud'));
     var words = wordCloud.all(by.repeater('word in words'));
 
-    var fakeArtistInput = 'Billy Joel';
+    var fakeauthorInput = 'Billy Joel';
     var expectedWordsInWordCloud = 'piano';
     const WCS = 250;
 
@@ -19,15 +19,15 @@ describe('word cloud', function() {
     });
 
 
-    it('should generate a new word cloud based on the user\'s input sorted by the frequency of words in the lyrics of the artist entered', function(){
+    it('should generate a new word cloud based on the user\'s input sorted by the frequency of words in the researchs of the author entered', function(){
        //get the old word cloud
        var oldWord0 = String(words.get(0));
        var oldWord1 = String(words.get(words.count()/2))
        var oldWord2 = String(words.last());
 
 
-       //input an artist's name
-       inputTextField.sendKeys(fakeArtistInput);
+       //input an author's name
+       inputTextField.sendKeys(fakeauthorInput);
 
        //submit
        submitButton.click();

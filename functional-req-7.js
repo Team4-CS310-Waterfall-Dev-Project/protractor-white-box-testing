@@ -9,15 +9,17 @@ describe('angularjs homepage', function(){
 	var inputField = element(by.id('topic_title'));
 	inputField.clear();
 	inputField.sendKeys('Drake');
-	startCount = words.count();
 	var wordCloud = element(by.id('wordCloud'));
 	var words = wordCloud.all(by.repeater('word in words'));
-	var Submit = element(by.css('.btn'));
-	Submit.click();
+	startCount = words.count();
+	
+	
+	var submit = element(by.css('.btn'));
+	submit.click();
 	
 	inputField.sendKeys('Beatles');
 	var addToWCButton = element(by.id('addToWC'));
-	addToWCBUtton.click();
+	addToWCButton.click();
 
 	expect(words.count()).toEqual(startCount+1);
 	});

@@ -17,13 +17,13 @@ describe('web application - search', function() {
     });  
 
 
-    it('should begin with an empty space for the word cloud to generate and an input text field for the user to search for an artist.', function(){
+    it('should begin with an empty space for the word cloud to generate and an input text field for the user to search for an author.', function(){
 	   expect(inputTextField.getText()).toEqual(test1ExpectedValue);
     });
 
 
-    it('should be able to search for a music artist according to the artist\'s name entered in the text field.', function(){
-        //enter artist name into text box
+    it('should be able to search for a music author according to the author\'s name entered in the text field.', function(){
+        //enter author name into text box
         inputTextField.sendKeys(test2Value);
 
         //click submit
@@ -32,7 +32,7 @@ describe('web application - search', function() {
 
 
     it('should provide an autocomplete field after a brief pause in the user\'s input.', function(){
-        //enter artist name into text box
+        //enter author name into text box
         inputTextField.sendKeys(test3Value);
 
         //wait for 5 seconds
@@ -57,7 +57,7 @@ describe('web application - search', function() {
     }); 
 
 
-    it('should have pictures for each artist to help the user recognize the artist they are looking for.', function() {
+    it('should have pictures for each author to help the user recognize the author they are looking for.', function() {
         //test for image existence
         expect(browser.isElementPresent(albumImages)).toEqual(true);
     });
