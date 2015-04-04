@@ -3,7 +3,7 @@ Testing functional requirements of Implementation using Protractor
 
 
 #instructions for setup and testing
-1a) import Group4Testing.ova  
+1a) import Group4Testing.ova - password: Aw103094  
 1b) in terminal cd protractor-testing/protractor-white-box-testing  
 1c) ./testingScript.sh  
 1d) The shell script will create 4 terminal windows: 1 will contain the output of protractor black box tests and another the phpunit white box tests. The other 2 are running the webapp and a server for protractor testing. 
