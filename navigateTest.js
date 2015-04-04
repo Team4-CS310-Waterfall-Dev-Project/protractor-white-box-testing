@@ -11,7 +11,7 @@ describe('navigate', function(){
     var backTopubsButton = backBtns.get(0);
     var backToWordCloudButton = backBtns.get(1);
     var submitBtn = element(by.css('.btn-lg'));
-    var publication = element(by.css('.animate-repeat')).get(0);
+    var publication = element(by.css('.animate-repeat'));
 
     it('should be able to navigate between screens', function(){
         //navigate to word cloud
@@ -39,7 +39,7 @@ describe('navigate', function(){
 
         //navigate back toword cloud from publication list
         browser.get(pubListURL);
-        backToWordCloudButton.click();
+        element(by.css('.backBTN')).click();
         expect(browser.getCurrentUrl()).toBe(wordCloudURL);
 
         //navigate to the publication research page from the publication list
