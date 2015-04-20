@@ -13,12 +13,5 @@ gnome-terminal --working-directory="$HOME/" -e --command="webdriver-manager star
 #wait for testing server to start up
 sleep 5 &&
 
-# start the black box testing
-# attempting to write output to a text file
-gnome-terminal --working-directory="$HOME/protractor-testing/protractor-white-box-testing" -e --command="protractor conf.js" &&
-
-#wait for black box testing to finish
-sleep 20 && 
-
-# TODO start the white box testing
-phpunit --coverage-text --bootstrap onlyGenerateWC.php wordCloudJSONTest.php
+# start the unit testing
+gnome-terminal --working-directory="$HOME/protractor-testing/protractor-white-box-testing" -e --command="phpunit --coverage-text --bootstrap onlyGenerateWC.php wordCloudJSONTest.php"
