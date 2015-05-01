@@ -14,4 +14,4 @@ gnome-terminal --working-directory="$HOME/" -e --command="webdriver-manager star
 sleep 5 &&
 
 # start the unit testing
-gnome-terminal --working-directory="$HOME/protractor-testing/protractor-white-box-testing" -e --command="phpunit --coverage-text --bootstrap onlyGenerateWC.php wordCloudJSONTest.php"
+gnome-terminal --working-directory="$HOME/protractor-testing/protractor-white-box-testing" -e --command="phpunit --coverage-text --bootstrap wordCloudForTest.php wordCloudTests.php"
